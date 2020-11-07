@@ -1,4 +1,5 @@
 import {
+  Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
@@ -9,6 +10,7 @@ import {
 
 import Category from './Category';
 
+@Entity('transactions')
 class Transaction {
   @PrimaryGeneratedColumn()
   id: string;
