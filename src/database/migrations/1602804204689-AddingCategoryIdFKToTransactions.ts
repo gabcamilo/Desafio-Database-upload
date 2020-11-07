@@ -8,6 +8,8 @@ import {
 export default class AddingCategoryIdFKToTransactions1602804204689
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.dropColumn('transactions', 'category');
+
     queryRunner.addColumn(
       'transactions',
       new TableColumn({
@@ -31,5 +33,12 @@ export default class AddingCategoryIdFKToTransactions1602804204689
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     queryRunner.dropForeignKey('transactions', 'TransactionsCategory');
+    queryRunner.addColumn(
+      'transactions',
+      new TableColumn({
+        name: 'category_id',
+        type: 'varchar',
+      }),
+    );
   }
 }
